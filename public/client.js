@@ -33,6 +33,11 @@ renderer.setClearColor(0x000000, 0.0);
 
 // orbit control setup
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true
+controls.enablePan = false
+controls.enableZoom = true
+controls.autoRotate = true
+controls.autoRotateSpeed = 5
 
 // earth geometry
 const earthGeometry = new THREE.SphereGeometry(0.6, 32, 32);
@@ -83,11 +88,18 @@ scene.add(ambientlight);
 // point light
 const pointLight = new THREE.PointLight(0xffffff, 1)
 pointLight.position.set(5, 3, 5);
+pointLight.intensity = 1.15
+
 scene.add(pointLight);
 
 // point light helper
 const Helper = new THREE.PointLightHelper(pointLight);
 scene.add(Helper);
+
+earthMesh.castShadow = true
+
+
+
 
 // handling resizing
 window.addEventListener('resize', () => {
